@@ -1,58 +1,19 @@
 
 <app-navbar></app-navbar>
-<div class="articleContainer">
+<div class="articleContainer" *ngIf="articles">
+    
     <ul class="list-group list-group-light">
-        <li class="list-group-item">
+        <li *ngFor="let article of articles" class="list-group-item">
             <div class="articleListHeader">
-                <p><strong>Scott Cosentino</strong> | Apr 13</p>
+                <p><strong>{{article.author}}</strong> | {{article.date_pub}}</p>
             </div>
             <div class="articleDetails">
-                <h2>Introduction to Programming with Python</h2>
-                <p>In this article, you will learn about the Python programming language...</p>
+                <h2><a href='/article{{article.path}}'>{{article.title}}</a></h2>
+                <p [innerHTML]="article.content"></p>
             </div>
             <div class="tags">
-                <p>Introduction to programming, Python</p>
+                <button *ngFor="let tag of article.tags">{{tag}}</button>
             </div>
         </li>
-        <li class="list-group-item"><div class="articleListHeader">
-            <p><strong>Scott Cosentino</strong> | Apr 13</p>
-        </div>
-        <div class="articleDetails">
-            <h2>Introduction to Programming with Python</h2>
-            <p>In this article, you will learn about the Python programming language...</p>
-        </div>
-        <div class="tags">
-            <p>Introduction to programming, Python</p>
-        </div></li>
-        <li class="list-group-item"><div class="articleListHeader">
-            <p><strong>Scott Cosentino</strong> | Apr 13</p>
-        </div>
-        <div class="articleDetails">
-            <h2>Introduction to Programming with Python</h2>
-            <p>In this article, you will learn about the Python programming language...</p>
-        </div>
-        <div class="tags">
-            <p>Introduction to programming, Python</p>
-        </div></li>
-        <li class="list-group-item"><div class="articleListHeader">
-            <p><strong>Scott Cosentino</strong> | Apr 13</p>
-        </div>
-        <div class="articleDetails">
-            <h2>Introduction to Programming with Python</h2>
-            <p>In this article, you will learn about the Python programming language...</p>
-        </div>
-        <div class="tags">
-            <p>Introduction to programming, Python</p>
-        </div></li>
-        <li class="list-group-item"><div class="articleListHeader">
-            <p><strong>Scott Cosentino</strong> | Apr 13</p>
-        </div>
-        <div class="articleDetails">
-            <h2>Introduction to Programming with Python</h2>
-            <p>In this article, you will learn about the Python programming language...</p>
-        </div>
-        <div class="tags">
-            <p>Introduction to programming, Python</p>
-        </div></li>
     </ul>
 </div>

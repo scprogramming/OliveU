@@ -1,0 +1,8 @@
+.articleContainer{
+    /* top&bottom, left&right */
+    margin: 1em 4em;
+  }
+
+  .content{
+    padding-bottom:2em;
+  }

@@ -1,4 +1,15 @@
 .articleContainer{
-  margin-left:10%;
-  margin-right:10%
+  /* top&bottom, left&right */
+  margin: 1em 4em;
+}
+
+a{
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  background-color: transparent;
+  color:#444;
+}
+
+a:hover{
+  color:#45B47E;
 }

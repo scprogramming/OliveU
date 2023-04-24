@@ -1,1 +1,11 @@
-<p>article works!</p>
+<app-navbar></app-navbar>
+
+<div class="articleContainer" *ngIf="article">
+    <p>{{article.author}}</p>
+    <p>{{article.date_pub}}</p>
+    <h1 class="articleTitle">{{article.title}}</h1>
+    <div class="content" [innerHTML]="article.content"></div>
+    <div class="tags">
+        <button *ngFor="let tag of article.tags">{{tag}}</button>
+    </div>
+</div>

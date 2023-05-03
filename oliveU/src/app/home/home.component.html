@@ -1,19 +1,2 @@
 
-<app-navbar></app-navbar>
-<div class="articleContainer" *ngIf="articles">
-    
-    <ul class="list-group list-group-light">
-        <li *ngFor="let article of articles" class="list-group-item">
-            <div class="articleListHeader">
-                <p><strong>{{article.author}}</strong> | {{article.date_pub}}</p>
-            </div>
-            <div class="articleDetails">
-                <h2><a href='/article{{article.path}}'>{{article.title}}</a></h2>
-                <p [innerHTML]="article.content"></p>
-            </div>
-            <div class="tags">
-                <button *ngFor="let tag of article.tags">{{tag}}</button>
-            </div>
-        </li>
-    </ul>
-</div>
+<app-unauthnav></app-unauthnav>

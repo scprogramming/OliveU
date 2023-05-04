@@ -15,4 +15,13 @@ export class AuthService {
   login(email:string, password:string){
     return this._apiService.postData('api/login', {email:email, password:password});
   }
+
+  isAuthenticated(token:string){
+    console.log("Here");
+    return this._apiService.postData('api/verifyToken', {token:token})
+  }
+
+  logout(){
+    localStorage.removeItem('id_token');
+  }
 }

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
-import { HttpResponse } from '@angular/common/http';
-import { AuthResponse } from '../Response';
+import { AuthResponse } from '../../Response';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +28,7 @@ export class LoginComponent {
         const parseRes = <AuthResponse>res;
 
         if (parseRes.status == 1){
-          console.log(parseRes.token);
+          localStorage.setItem('id_token', parseRes.token);
           this.router.navigateByUrl("/");
         }else{
           this.message = parseRes.message;

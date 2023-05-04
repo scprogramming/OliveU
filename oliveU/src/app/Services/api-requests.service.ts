@@ -16,7 +16,6 @@ export class ApiRequestsService {
   postData(endpoint:string,reqBody:any){
 
     const body = JSON.stringify(reqBody);
-
     return this._http.post(this.apiUrl + endpoint,body, {'headers':{'content-type':'application/json'}})
   }
 

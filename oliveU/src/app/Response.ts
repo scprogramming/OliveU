@@ -7,3 +7,7 @@ export interface AuthResponse{
 export interface StatusOnlyRes{
     status:boolean
 }
+
+export interface CourseRes{
+    courses:any
+}

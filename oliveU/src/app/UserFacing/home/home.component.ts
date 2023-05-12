@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiRequestsService } from '../../Services/api-requests.service';
 import { AuthService } from 'src/app/Services/auth.service';
-import { StatusOnlyRes } from 'src/app/Response';
+import { CourseRes, StatusOnlyRes } from 'src/app/Response';
 import { map } from 'rxjs';
 
 @Component({
@@ -11,6 +11,7 @@ import { map } from 'rxjs';
 })
 export class HomeComponent {
   isAuth:boolean = false;
+  courses:any;
 
   constructor(private _apiservice:ApiRequestsService, private _authService:AuthService){}
 
@@ -22,9 +23,13 @@ export class HomeComponent {
       this._authService.isAuthenticated(token).subscribe(res => {
         let parse = <StatusOnlyRes>res;
         this.isAuth = parse.status;
-        console.log(this.isAuth);
       });
     }
+
+    this._apiservice.getData('api/courses').subscribe(res => {
+      const courseRes = <CourseRes>res;
+      this.courses = courseRes.courses;
+    })
     
     
   }

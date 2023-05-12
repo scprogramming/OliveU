@@ -1,0 +1,9 @@
+#banner{
+    background-image: linear-gradient(to right, #83C1A3,#45B47E);
+    height:50vh;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}

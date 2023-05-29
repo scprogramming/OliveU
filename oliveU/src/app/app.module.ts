@@ -11,6 +11,8 @@ import { UnauthnavComponent } from './UserFacing/unauthnav/unauthnav.component';
 import { LoginComponent } from './UserFacing/login/login.component';
 import { RegisterComponent } from './UserFacing/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoursePageComponent } from './UserFacing/course-page/course-page.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     UnauthnavComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CoursePageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

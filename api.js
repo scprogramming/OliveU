@@ -21,6 +21,20 @@ app.use(cors({
     origin: [process.env.frontEndHost + ':' + process.env.frontEndPort, process.env.frontEndHost + ':' + 5000, process.env.frontEndHost]
 }));
 
+
+app.get('/api/courses', async(req,res) => {
+    const courses = await pool.query("SELECT * FROM courses;");
+
+    res.json({courses:courses.rows})
+});
+
+app.get('/api/courseContent/:id', async(req,res) => {
+    const courseDetails = await pool.query("SELECT * FROM courses WHERE path = $1",['/' + req.params.id])
+    const modules = await pool.query("SELECT * FROM modules WHERE course_id = $1", [courseDetails.rows[0].id])
+    const lessons = await pool.query("SELECT * FROM lessons WHERE course_id = $1", [courseDetails.rows[0].id])
+    res.json({details:courseDetails.rows[0], modules:modules.rows, lessons:lessons.rows});
+});
+
 app.post('/api/register', async(req,res) => {
     
     try{

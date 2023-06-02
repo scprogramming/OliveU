@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
 import { AuthResponse } from '../../Response';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   form:FormGroup;
   message:string;
 
-  constructor(private fb:FormBuilder, private _authService:AuthService, private router:Router){
+  constructor(private fb:FormBuilder, private _authService:AuthService, private router:Router, private location: Location){
     this.form = this.fb.group({
       email:[''],
       password:['']
@@ -29,7 +30,7 @@ export class LoginComponent {
 
         if (parseRes.status == 1){
           localStorage.setItem('id_token', parseRes.token);
-          this.router.navigateByUrl("/");
+          this.location.back();
         }else{
           this.message = parseRes.message;
         }

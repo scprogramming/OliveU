@@ -7,3 +7,7 @@
     justify-content: center;
     align-items: center;
 }
+
+.divpadding{
+    padding: 2em 4em 0 4em;
+}

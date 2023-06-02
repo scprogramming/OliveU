@@ -12,7 +12,8 @@ import { LoginComponent } from './UserFacing/login/login.component';
 import { RegisterComponent } from './UserFacing/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursePageComponent } from './UserFacing/course-page/course-page.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './UserFacing/footer/footer.component';
+import { CoursePlayerComponent } from './UserFacing/course-player/course-player.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     RegisterComponent,
     CoursePageComponent,
-    FooterComponent
+    FooterComponent,
+    CoursePlayerComponent
   ],
   imports: [
     BrowserModule,

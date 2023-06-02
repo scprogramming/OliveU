@@ -1,36 +1,31 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseDetails, Lessons, StatusOnlyRes } from 'src/app/Response';
 import { ApiRequestsService } from 'src/app/Services/api-requests.service';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
-  selector: 'app-course-page',
-  templateUrl: './course-page.component.html',
-  styleUrls: ['./course-page.component.css']
+  selector: 'app-course-player',
+  templateUrl: './course-player.component.html',
+  styleUrls: ['./course-player.component.css']
 })
-export class CoursePageComponent {
-  id:string;
-  isAuth:boolean;
-  courseContent:any;
+export class CoursePlayerComponent {
+
+  constructor(public sanitizer:DomSanitizer, private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router){}
   lessons:any;
+  courseContent:any;
+  activeContent:any;
 
-  constructor(private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router){}
-
-  enrollStudent(){
-    const token = localStorage.getItem('id_token')!;
-    this._apiservice.postData('api/enroll/', {course_id:this.courseContent.details.id, token:token}).subscribe(res => {
-      this.router.navigateByUrl('coursePlayer/' + this.id);
-    });
-
+  changeContent(module_id:any,lesson_id:any){
+    this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[module_id][lesson_id-1].content);
   }
 
   ngOnInit(){
 
+    this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl("");
     this.route.params.subscribe(params => {
       this._apiservice.getData('api/courseContent/' + params['id']).subscribe(res => {
-        this.id = params['id'];
         let courseContent = <CourseDetails>res;
 
         let organizedLesson:any = [];
@@ -58,10 +53,10 @@ export class CoursePageComponent {
 
       this._authService.isAuthenticated(token).subscribe(res => {
         let parse = <StatusOnlyRes>res;
-        this.isAuth = parse.status;
       });
     }
     
     
   }
+
 }

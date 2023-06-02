@@ -21,7 +21,6 @@ app.use(cors({
     origin: [process.env.frontEndHost + ':' + process.env.frontEndPort, process.env.frontEndHost + ':' + 5000, process.env.frontEndHost]
 }));
 
-
 app.get('/api/courses', async(req,res) => {
     const courses = await pool.query("SELECT * FROM courses;");
 
@@ -31,8 +30,22 @@ app.get('/api/courses', async(req,res) => {
 app.get('/api/courseContent/:id', async(req,res) => {
     const courseDetails = await pool.query("SELECT * FROM courses WHERE path = $1",['/' + req.params.id])
     const modules = await pool.query("SELECT * FROM modules WHERE course_id = $1", [courseDetails.rows[0].id])
-    const lessons = await pool.query("SELECT * FROM lessons WHERE course_id = $1", [courseDetails.rows[0].id])
+    const lessons = await pool.query("SELECT * FROM lessons WHERE course_id = $1 ORDER BY module_id, id ASC", [courseDetails.rows[0].id])
     res.json({details:courseDetails.rows[0], modules:modules.rows, lessons:lessons.rows});
+});
+
+app.post('/api/enroll/', async(req,res) => {
+    try{
+        const {token, course_id} = req.body;
+        const jwtRes = jwt.verify(token, process.env.jwtSecret);
+        
+        console.log(jwtRes);
+        const queryRes = await pool.query("INSERT INTO enrollments VALUES($1,$2,CURRENT_DATE)",[jwtRes, course_id])
+        res.json({status:1, message:"Successfully Registered"});
+    }catch (err){
+        console.error(err);
+        res.json({status:-1, message:"Failed to enroll"});
+    }
 });
 
 app.post('/api/register', async(req,res) => {

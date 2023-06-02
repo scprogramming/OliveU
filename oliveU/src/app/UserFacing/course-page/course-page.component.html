@@ -11,27 +11,29 @@
       <div class="container">
         <h1 class="display-4">{{courseContent.details.title}}</h1>
         <p class="lead">{{courseContent.details.shortdesc}}</p>
-        <button class="btn btn-primary">Enroll for free</button>
+        <button (click)="enrollStudent()" class="btn btn-primary">Enroll for free</button>
       </div>
   </div>
 
-  <div style="padding-left:4em; padding-top:2em;" id="learningObj">
+  <div class="divpadding" id="learningObj">
       <h2>What you'll learn</h2>
       <p>{{courseContent.details.description}}</p>
   </div>
 
-  <div style="padding-left:4em; padding-top:2em;" id="preReq">
+  <div class="divpadding" id="preReq">
       <h2>Prerequisites</h2>
       <p>{{courseContent.details.prereq}}</p>
   </div>
 
-  <div style="padding-left:4em; padding-top:2em;" id="curriculum">
+  <div class="divpadding" id="curriculum">
       <h2>Course details</h2>
 
       <div id="accordion" class="accordion">
         <div class="accordion-item" *ngFor="let module of courseContent.modules; let i = index">
           <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target] = "'#module-' + module.id" aria-expanded="true" [attr.aria-controls]= "'module-' + module.id">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#module-' + module.id" aria-expanded="true"
+              [attr.aria-controls]="'module-' + module.id">
               {{module.title}}
             </button>
           </h2>
@@ -44,9 +46,11 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
           </div>
         </div>
+      
       </div>
-          
-  </div>
 </div>
+
+<app-footer></app-footer>

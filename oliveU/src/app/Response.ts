@@ -18,6 +18,12 @@ export interface CourseDetails{
     lessons:any
 }
 
+export interface EnrollRes{
+    status:any,
+    message:any,
+    value:boolean
+}
+
 export interface Lessons{
     id:any,
     module_id:any,

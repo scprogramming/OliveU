@@ -11,7 +11,14 @@
       <div class="container">
         <h1 class="display-4">{{courseContent.details.title}}</h1>
         <p class="lead">{{courseContent.details.shortdesc}}</p>
-        <button (click)="enrollStudent()" class="btn btn-primary">Enroll for free</button>
+
+        <ng-template [ngIf]="isEnrolled" [ngIfElse]="notEnrolled">
+          <button (click)="redirectToPlayer()" class="btn btn-primary">Continue course</button>
+        </ng-template>
+
+        <ng-template #notEnrolled>
+          <button (click)="enrollStudent()" class="btn btn-primary">Enroll for free</button>
+        </ng-template>
       </div>
   </div>
 

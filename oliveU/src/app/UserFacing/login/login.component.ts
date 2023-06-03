@@ -30,7 +30,7 @@ export class LoginComponent {
 
         if (parseRes.status == 1){
           localStorage.setItem('id_token', parseRes.token);
-          this.location.back();
+          this.router.navigateByUrl("/");
         }else{
           this.message = parseRes.message;
         }

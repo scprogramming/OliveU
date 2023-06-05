@@ -4,14 +4,16 @@
     margin-right: auto;
 }
 
+
+
 #olive{
     padding: 0.5em 1em;
     background-color: #83C1A3;
 }
 
 .scroll {
-    height:90vh;
-    overflow-y: scroll;
+    /* height:90vh; */
+    /* overflow-y: scroll; */
 }
 
 .responsive-iframe {
@@ -38,4 +40,64 @@
 
   .row{
     --bs-gutter-x: 0;
+  }
+
+  .nopadding{
+    padding: 0;
+  }
+
+  .clickable :hover{
+    cursor: pointer;
+    background-color: #83C1A3; /*lighten this, use darker colour for section */
+  }
+
+  .clickable td{
+    padding: 0.5rem 1rem;
+  }
+
+  .accordion-button{
+    background-color: #45B47E;
+    color:#000;
+  }
+
+  .accordion-button:focus{
+    box-shadow: none;
+  }
+
+  .big{
+    font-size: 20pt;
+  }
+
+.alignthem{
+  display: flex;
+  align-items: center;
+}
+
+  a{
+    text-decoration: none;
+    color:black;
+  }
+
+  .hideBar{
+    display:none;
+  }
+  
+  @media only screen and (max-width: 768px){
+    .hideBar{
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width: 769px){
+    #scroll{
+      display: block;
+    }
+  }
+
+  .accordion-button::after {
+    background-image: initial;
+  }
+  
+  .accordion-button:not(.collapsed)::after {
+    background-image: initial;
   }

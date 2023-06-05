@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursePageComponent } from './UserFacing/course-page/course-page.component';
 import { FooterComponent } from './UserFacing/footer/footer.component';
 import { CoursePlayerComponent } from './UserFacing/course-player/course-player.component';
+import { ProfileComponent } from './UserFacing/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CoursePlayerComponent } from './UserFacing/course-player/course-player.
     RegisterComponent,
     CoursePageComponent,
     FooterComponent,
-    CoursePlayerComponent
+    CoursePlayerComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

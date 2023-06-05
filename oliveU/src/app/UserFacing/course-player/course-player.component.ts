@@ -16,9 +16,15 @@ export class CoursePlayerComponent {
   lessons:any;
   courseContent:any;
   activeContent:any;
-
+  activeSelectMod:any = 1;
+  activeSelectLesson:any = 1;
+  activeTitle:any;
+  
   changeContent(module_id:any,lesson_id:any){
     this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[module_id][lesson_id-1].content);
+    this.activeSelectMod = module_id;
+    this.activeSelectLesson = lesson_id;
+    this.activeTitle = this.lessons[module_id][lesson_id-1].title;
   }
 
   ngOnInit(){
@@ -41,8 +47,10 @@ export class CoursePlayerComponent {
           i += 1;
         }
 
-        this.courseContent = courseContent;
+        this.courseContent = courseContent; 
         this.lessons = <Lessons>organizedLesson;
+        this.activeTitle = this.lessons[1][0].title;
+        this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[1][0].content);
 
         console.log(this.lessons)
       })

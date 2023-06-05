@@ -8,6 +8,11 @@ export interface StatusOnlyRes{
     status:boolean
 }
 
+export interface StatusMessageRes{
+    status:any,
+    message:any
+}
+
 export interface CourseRes{
     courses:any
 }
@@ -18,6 +23,12 @@ export interface CourseDetails{
     lessons:any
 }
 
+export interface EnrollRes{
+    status:any,
+    message:any,
+    value:boolean
+}
+
 export interface Lessons{
     id:any,
     module_id:any,
@@ -25,4 +36,12 @@ export interface Lessons{
     content:any,
     content_type:any,
     course_id:any
+}
+
+export interface UserDetailRes{
+    status:any,
+    message:any,
+    user_details:any,
+    user_id:any,
+    email:any
 }

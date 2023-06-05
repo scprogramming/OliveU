@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+    <div class="sidebar col-md-2">
+        <a class="active" href="#">Profile</a>
+        <a href="#">Update Password</a>
+    </div>
+      
+      <div *ngIf="profileActive" class="content col-md-8">
+        <h2>Edit Profile</h2>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="email">
+        </div>
+    
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="first_name">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)] = "last_name">
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" [(ngModel)] = "country">
+        </div>
+
+        <p>{{status}}</p>
+
+        <button class="btn btn-primary mt-2" (click)="saveProfile()">Save Changes</button>
+      </div>
+</div>

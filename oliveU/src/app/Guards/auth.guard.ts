@@ -21,10 +21,17 @@ export class AuthGuard implements CanActivate {
         let token = localStorage.getItem("id_token")!;
         return this.authService.isAuthenticated(token).pipe(map((response:any) => {
           let parse = <StatusOnlyRes>response;
+
+          if (!parse.status){
+            this.router.navigate(['/home']);
+            return false;
+          }
+
           return parse.status;
         }));
         
       }else{
+        this.router.navigate(['/home']);
         return false;
       }
 

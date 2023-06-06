@@ -4,6 +4,11 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const Pool = require("pg").Pool;
+const fs = require('fs')
+
+const errorLog = fs.createWriteStream('./errors.log');
+const outputLog = fs.createWriteStream('./outputs.log');
+const consoler = new console.Console(outputLog, errorLog)
 
 
 const pool = new Pool({
@@ -22,9 +27,14 @@ app.use(cors({
 }));
 
 app.get('/api/courses', async(req,res) => {
-    const courses = await pool.query("SELECT * FROM courses;");
+    try{
+        const courses = await pool.query("SELECT * FROM courses;");
 
-    res.json({courses:courses.rows})
+        res.json({courses:courses.rows})
+    }catch (err){
+        res.json({status:-1, message:"Failed to retrieve courses"});
+    }
+    
 });
 
 app.post('/api/userCourses', async(req,res) => {
@@ -114,13 +124,20 @@ app.post('/api/updatePassword', async(req,res) => {
 });
 
 async function checkEnroll(token, course_id){
-    const checkEnroll = await pool.query("SELECT COUNT(user_id) AS countId FROM enrollments WHERE user_id=$1 AND course_id = $2 ",[token.user_id,course_id]);
 
-    if (checkEnroll.rows[0].countid > 0){
-        return true;
-    }else{
+    try{
+        const checkEnroll = await pool.query("SELECT COUNT(user_id) AS countId FROM enrollments WHERE user_id=$1 AND course_id = $2 ",[token.user_id,course_id]);
+
+        if (checkEnroll.rows[0].countid > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }catch (err){
+        console.error(err);
         return false;
     }
+    
 }
 
 app.post('/api/checkEnroll', async(req,res) => {
@@ -225,9 +242,8 @@ app.post('/api/login', async(req,res) => {
 });
 
 app.post('/api/verifyToken', async(req,res) => {
-    const {token} = req.body;
-
     try{
+        const {token} = req.body;
         jwt.verify(token, process.env.jwtSecret);
         return res.json({status:true});
     }catch (err){

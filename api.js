@@ -62,8 +62,38 @@ app.post('/api/userDetails', async(req,res) => {
         const jwtRes = jwt.verify(token, process.env.jwtSecret);
 
         const details = await pool.query("SELECT * FROM user_details WHERE user_id = $1", [jwtRes.user_id]);
+        const email = await pool.query("SELECT email FROM users WHERE user_id = $1", [jwtRes.user_id])
+        res.json({status:1, message:"Retrieved data", email:email.rows[0].email, user_details:details.rows[0], user_id:jwtRes.user_id});
+    }catch(err){
+        console.error(err);
+        res.json({status:-1, message:"Failed to get user details"})
+    }
+});
 
-        res.json({status:1, message:"Retrieved data", email:jwtRes.email, user_details:details.rows[0], user_id:jwtRes.user_id});
+app.post('/api/updatePassword', async(req,res) => {
+    try{
+        const {token,old_password, new_password, confirm_password} = req.body;
+        const jwtRes = jwt.verify(token, process.env.jwtSecret);
+
+        const user = await pool.query("SELECT * FROM users WHERE user_id=$1", [jwtRes.user_id])
+
+        if (user.rowCount !== 0){
+            const comp = await bcrypt.compare(old_password, user.rows[0].password);
+
+            if (comp){
+                if (new_password === confirm_password){
+                    const salt = await bcrypt.genSalt(10);
+                    const hash = await bcrypt.hash(new_password,salt);
+                    await pool.query("UPDATE users SET password = $1 WHERE user_id = $2", [hash,jwtRes.user_id])
+                }
+                res.json({status:1, message:"Password updated successfully!"});
+            }else{
+                res.json({status:-1, message:"Your current password is incorrect!"});
+            }
+        }else{
+            res.json({status:-1, message:"Invalid user provided"});
+        }
+
     }catch(err){
         console.error(err);
         res.json({status:-1, message:"Failed to get user details"})

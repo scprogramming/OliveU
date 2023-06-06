@@ -12,6 +12,7 @@ export class ProfileComponent {
 
   isAuth:boolean;
   profileActive:boolean=true;
+  passwordActive:boolean=false;
   user_id:any;
   first_name:any;
   last_name:any;
@@ -19,7 +20,31 @@ export class ProfileComponent {
   email:any;
   status:any;
 
+  currentPassword:any;
+  newPassword:any;
+  confirmPassword:any;
+
   constructor(private _apiservice:ApiRequestsService, private _authService:AuthService){}
+
+  changeActive(mode:number){
+    if (mode === 0){
+      this.profileActive = true;
+      this.passwordActive = false;
+    }else{
+      this.profileActive = false;
+      this.passwordActive = true;
+    }
+  }
+
+  updatePassword(){
+    if (localStorage.getItem("id_token") !== null){
+      const token = localStorage.getItem('id_token')!;
+      this._apiservice.postData("api/updatePassword", {token:token,old_password:this.currentPassword, new_password:this.newPassword, confirm_password:this.confirmPassword}).subscribe(res => {
+        const parseRes = <StatusMessageRes>res;
+        this.status = parseRes.message;
+      });
+    }
+  }
 
   saveProfile(){
     if (localStorage.getItem("id_token") !== null){

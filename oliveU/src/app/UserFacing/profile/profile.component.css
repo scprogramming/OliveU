@@ -1,17 +1,18 @@
 
-  .sidebar a {
+  .sidebar div {
     display: block;
     color: black;
     padding: 16px;
     text-decoration: none;
+    cursor: pointer;
   }
    
-  .sidebar a.active {
+  .sidebar div.active {
     background-color: #04AA6D;
     color: white;
   }
   
-  .sidebar a:hover:not(.active) {
+  .sidebar div:hover:not(.active) {
     background-color: #555;
     color: white;
   }
@@ -23,12 +24,12 @@
       height: auto;
       position: relative;
     }
-    .sidebar a {float: left;}
+    .sidebar div {float: left;}
     div.content {margin-left: 0;}
   }
   
   @media screen and (max-width: 400px) {
-    .sidebar a {
+    .sidebar div {
       text-align: center;
       float: none;
     }

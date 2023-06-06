@@ -15,6 +15,7 @@ import { CoursePageComponent } from './UserFacing/course-page/course-page.compon
 import { FooterComponent } from './UserFacing/footer/footer.component';
 import { CoursePlayerComponent } from './UserFacing/course-player/course-player.component';
 import { ProfileComponent } from './UserFacing/profile/profile.component';
+import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProfileComponent } from './UserFacing/profile/profile.component';
     CoursePageComponent,
     FooterComponent,
     CoursePlayerComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserCoursesComponent
   ],
   imports: [
     BrowserModule,

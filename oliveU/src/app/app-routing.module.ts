@@ -8,6 +8,7 @@ import { CoursePageComponent } from './UserFacing/course-page/course-page.compon
 import { CoursePlayerComponent } from './UserFacing/course-player/course-player.component';
 import { ProfileComponent } from './UserFacing/profile/profile.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home', pathMatch:'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:"register", component:RegisterComponent, canActivate:[LoginGuard]},
   {path:"courses/:id",component:CoursePageComponent},
   {path:"coursePlayer/:id",component:CoursePlayerComponent},
-  {path:"profile", component:ProfileComponent, canActivate:[AuthGuard]}
+  {path:"profile", component:ProfileComponent, canActivate:[AuthGuard]},
+  {path:"userCourses", component:UserCoursesComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -27,6 +27,19 @@ app.get('/api/courses', async(req,res) => {
     res.json({courses:courses.rows})
 });
 
+app.post('/api/userCourses', async(req,res) => {
+    try{
+        const {token} = req.body;
+        const jwtRes = jwt.verify(token,process.env.jwtSecret);
+
+        const courses = await pool.query("SELECT courses.* FROM enrollments INNER JOIN courses ON enrollments.course_id = courses.id");
+        res.json({courses:courses.rows});
+    }catch(err){
+        console.error(err);
+        res.json({status:-1, message:"Failed to retrieve courses"});
+    }
+});
+
 app.get('/api/courseContent/:id', async(req,res) => {
     try{
         const courseDetails = await pool.query("SELECT * FROM courses WHERE path = $1",['/' + req.params.id])

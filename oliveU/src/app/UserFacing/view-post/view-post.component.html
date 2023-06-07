@@ -1,0 +1,12 @@
+<ng-template [ngIf]="isAuth" [ngIfElse]="loggedOut">
+    <app-navbar></app-navbar>
+</ng-template>
+
+<ng-template #loggedOut>
+    <app-unauthnav></app-unauthnav>
+</ng-template>
+
+<div class="divpadding" *ngIf="articleContent">
+    <h2>{{articleContent.title}}</h2>
+    <div [innerHTML]="articleContent.content"></div>
+</div>

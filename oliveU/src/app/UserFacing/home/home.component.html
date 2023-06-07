@@ -30,18 +30,18 @@
     </div>
 
 
-    <div class="headContainer">
-        <h2 style="display:inline">Text Articles and Tutorials</h2>
-        <a class="seeAllCourses" href="/courses">See all articles and tutorials</a>
+    <div class="headContainer mt-5">
+        <h2 style="display:inline">Text Posts and Tutorials</h2>
+        <a class="seeAllCourses" href="/posts">See all posts and tutorials</a>
     </div>
     <div class="row">
-        <div *ngFor="let course of courses" class="col-lg-4" style="padding-top:1em;">
-            <a href="courses{{course.path}}">
+        <div *ngFor="let article of articles" class="col-lg-4" style="padding-top:1em;">
+            <a href="viewPost{{article.path}}">
             <div class="card w-100 h-100">
-                <img class="card-img-top img-fluid" src={{course.thumbnail}} alt="Card image cap">
+                <img class="card-img-top img-fluid" src={{article.thumbnail}} alt="Card image cap">
                 <div class="card-block">
-                    <h4 class="card-title">{{course.title}}</h4>
-                    <p class="card-text">{{course.shortdesc}}</p>
+                    <h4 class="card-title">{{article.title}}</h4>
+                    <p class="card-text">{{article.shortdesc}}</p>
                 </div>
             </div>
             </a>
@@ -49,3 +49,5 @@
         
     </div>
 </div>
+
+<app-footer></app-footer>

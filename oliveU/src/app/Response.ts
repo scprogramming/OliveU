@@ -17,10 +17,21 @@ export interface CourseRes{
     courses:any
 }
 
+export interface ArticleRes{
+    articles:any
+}
+
 export interface CourseDetails{
     details:any,
     modules:any,
     lessons:any
+}
+
+export interface ArticleDetails{
+    title:any,
+    content:any,
+    description:any,
+    thumbnail:any
 }
 
 export interface EnrollRes{

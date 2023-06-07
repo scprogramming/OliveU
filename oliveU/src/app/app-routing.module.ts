@@ -10,6 +10,8 @@ import { ProfileComponent } from './UserFacing/profile/profile.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.component';
 import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
+import { AllPostsComponent } from './UserFacing/all-posts/all-posts.component';
+import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home', pathMatch:'full'},
@@ -20,7 +22,9 @@ const routes: Routes = [
   {path:"courses/:id",component:CoursePageComponent},
   {path:"coursePlayer/:id",component:CoursePlayerComponent},
   {path:"profile", component:ProfileComponent, canActivate:[AuthGuard]},
-  {path:"userCourses", component:UserCoursesComponent, canActivate:[AuthGuard]}
+  {path:"userCourses", component:UserCoursesComponent, canActivate:[AuthGuard]},
+  {path:"posts", component:AllPostsComponent},
+  {path:"viewPost/:id", component:ViewPostComponent}
 ];
 
 @NgModule({

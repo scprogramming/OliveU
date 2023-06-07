@@ -48,6 +48,36 @@ app.get('/api/courseSegment', async(req,res) => {
     
 });
 
+app.get('/api/articles', async(req,res) => {
+    try{
+        const articles = await pool.query("SELECT * FROM articles");
+        res.json({articles:articles.rows});
+    }catch (err){
+        console.error(err);
+        res.json({status:-1, message:"Failed to retrieve articles"});
+    }
+});
+
+app.get('/api/articleContent/:id', async(req,res) => {
+    try{
+        const articleDetails = await pool.query("SELECT title, content, description, thumbnail FROM articles WHERE path = $1", ['/' + req.params.id]);
+        res.json({title:articleDetails.rows[0].title, content: articleDetails.rows[0].content, 
+        description: articleDetails.rows[0].description, thumbnail: articleDetails.rows[0].thumbnail});
+    }catch(err){
+        console.error(err);
+        res.json({status:-1, message:"Failed to retrieve article"});
+    }
+})
+
+app.get('/api/articlesSegment', async(req,res) => {
+    try{
+        const articles = await pool.query("SELECT * FROM articles LIMIT 4");
+        res.json({articles:articles.rows});
+    }catch (err){
+        console.error(err);
+        res.json({status:-1, message:"Failed to retrieve articles"});
+    }
+});
 
 app.post('/api/userCourses', async(req,res) => {
     try{

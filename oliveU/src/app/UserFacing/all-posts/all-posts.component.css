@@ -1,0 +1,13 @@
+.articleContainer{
+    /* top&bottom, left&right */
+    margin: 1em 4em;
+  }
+  
+  a{
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+    color:#444;
+  }
+  
+  

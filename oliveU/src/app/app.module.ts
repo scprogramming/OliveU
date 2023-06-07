@@ -17,6 +17,8 @@ import { CoursePlayerComponent } from './UserFacing/course-player/course-player.
 import { ProfileComponent } from './UserFacing/profile/profile.component';
 import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.component';
 import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
+import { AllPostsComponent } from './UserFacing/all-posts/all-posts.component';
+import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.compon
     CoursePlayerComponent,
     ProfileComponent,
     UserCoursesComponent,
-    AllCoursesComponent
+    AllCoursesComponent,
+    AllPostsComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,

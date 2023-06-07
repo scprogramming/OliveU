@@ -1,0 +1,27 @@
+
+<ng-template [ngIf]="isAuth" [ngIfElse]="loggedOut">
+    <app-navbar></app-navbar>
+</ng-template>
+
+<ng-template #loggedOut>
+    <app-unauthnav></app-unauthnav>
+</ng-template>
+
+
+<div class="container"> 
+    <h1>Our Posts and Tutorials</h1>
+    <div class="row">
+        <div *ngFor="let article of articles" class="col-lg-4" style="padding-top:1em;">
+            <a href="viewPost{{article.path}}">
+            <div class="card w-100 h-100">
+                <img class="card-img-top img-fluid" src={{article.thumbnail}} alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">{{article.title}}</h4>
+                    <p class="card-text">{{article.description}}</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        
+    </div>
+</div>

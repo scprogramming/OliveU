@@ -9,10 +9,12 @@ import { CoursePlayerComponent } from './UserFacing/course-player/course-player.
 import { ProfileComponent } from './UserFacing/profile/profile.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.component';
+import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home', pathMatch:'full'},
   {path:'home', component:HomeComponent},
+  {path:'courses', component:AllCoursesComponent},
   {path:"login", component:LoginComponent, canActivate:[LoginGuard]},
   {path:"register", component:RegisterComponent, canActivate:[LoginGuard]},
   {path:"courses/:id",component:CoursePageComponent},

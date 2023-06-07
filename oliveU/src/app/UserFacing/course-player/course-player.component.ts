@@ -17,14 +17,35 @@ export class CoursePlayerComponent {
   courseContent:any;
   activeContent:any;
   activeSelectMod:any = 1;
-  activeSelectLesson:any = 1;
+  activeSelectLesson:any = 0;
   activeTitle:any;
+  lastLesson:boolean;
+  linearLessonList:any;
   
-  changeContent(module_id:any,lesson_id:any){
-    this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[module_id][lesson_id-1].content);
-    this.activeSelectMod = module_id;
+  changeContent(lesson_id:any){
+    this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.linearLessonList[lesson_id].content);
+    
     this.activeSelectLesson = lesson_id;
-    this.activeTitle = this.lessons[module_id][lesson_id-1].title;
+
+    if (this.activeSelectLesson < this.linearLessonList.length - 1){
+      this.lastLesson = false;
+    }else{
+      this.lastLesson = true;
+    }
+    this.activeSelectMod = this.linearLessonList[lesson_id].module_id;
+    this.activeTitle = this.linearLessonList[lesson_id].title;
+  }
+
+  nextLesson(){
+      this.activeSelectLesson += 1;
+
+      if (this.activeSelectLesson + 1 > this.linearLessonList.length - 1){
+        this.lastLesson = true;
+      }
+
+      this.activeTitle = this.linearLessonList[this.activeSelectLesson].title;
+      this.activeSelectMod = this.linearLessonList[this.activeSelectLesson].module_id;
+      this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.linearLessonList[this.activeSelectLesson].content);
   }
 
   ngOnInit(){
@@ -35,13 +56,16 @@ export class CoursePlayerComponent {
         let courseContent = <CourseDetails>res;
 
         let organizedLesson:any = [];
+        let linearLessons:any = [];
+
         let i = 0;
         while (i < courseContent.lessons.length){
+          linearLessons.push(courseContent.lessons[i]);
 
           if (organizedLesson[courseContent.lessons[i].module_id] === undefined){
-            organizedLesson[courseContent.lessons[i].module_id] = [courseContent.lessons[i]];
+            organizedLesson[courseContent.lessons[i].module_id] = [{linearId:i,lessons:courseContent.lessons[i]}];
           }else{
-            organizedLesson[courseContent.lessons[i].module_id].push(courseContent.lessons[i]);
+            organizedLesson[courseContent.lessons[i].module_id].push({linearId:i,lessons:courseContent.lessons[i]});
           }
 
           i += 1;
@@ -49,10 +73,11 @@ export class CoursePlayerComponent {
 
         this.courseContent = courseContent; 
         this.lessons = <Lessons>organizedLesson;
-        this.activeTitle = this.lessons[1][0].title;
-        this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[1][0].content);
+        this.activeTitle = this.lessons[1][0].lessons.title;
+        this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[1][0].lessons.content);
+        this.linearLessonList = <Lessons>linearLessons;
 
-        console.log(this.lessons)
+        console.log(this.linearLessonList)
       })
     })
 

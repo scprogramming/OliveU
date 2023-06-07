@@ -27,19 +27,20 @@
                             <div class="accordion-item" *ngFor="let module of courseContent.modules; let i = index">
                               <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                  [attr.data-bs-target]="'#module-' + module.id" aria-expanded="false"
+                                  [attr.data-bs-target]="'#module-' + module.id"
+                                   aria-expanded="false"
                                   [attr.aria-controls]="'module-' + module.id">
                                   {{module.title}}
                                 </button>
                               </h2>
-                              <div id="module-{{module.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                              <div id="module-{{module.id}}" class="accordion-collapse collapse" [ngClass] = "{'show':activeSelectMod==module.id}" aria-labelledby="headingOne" data-bs-parent="#accordion">
                                 <div class="accordion-body nopadding">
                                   <table class="table">
                                     <tbody>
                                       <tr class="clickable" *ngFor="let lesson of lessons[module.id]">
                                         <td
-                                        [ngStyle] = "{'background-color': activeSelectMod == module.id && activeSelectLesson == lesson.id ? '#83C1A3' : '#FFF'}"
-                                        scope="row" (click)="changeContent(module.id,lesson.id)">{{lesson.title}}</td>
+                                        [ngStyle] = "{'background-color': activeSelectLesson == lesson.linearId ? '#83C1A3' : '#FFF'}"
+                                        scope="row" (click)="changeContent(lesson.linearId)">{{lesson.lessons.title}}</td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -61,7 +62,10 @@
         <div class="thediv">
         <div class="container">
           
-        <iframe [src]="activeContent" class="responsive-iframe"></iframe>
-    </div>  </div>
+        <iframe [src]="activeContent" class="responsive-iframe" allowfullscreen></iframe>
+    </div>  
+  </div>
+  <hr>
+  <button *ngIf="!lastLesson" (click)="nextLesson()" class="btn btn-primary m-1">Next Lesson</button>
     </div>
 </div>

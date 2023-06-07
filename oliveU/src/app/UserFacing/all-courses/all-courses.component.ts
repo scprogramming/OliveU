@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { ApiRequestsService } from '../../Services/api-requests.service';
-import { AuthService } from 'src/app/Services/auth.service';
 import { CourseRes, StatusOnlyRes } from 'src/app/Response';
-import { map } from 'rxjs';
+import { ApiRequestsService } from 'src/app/Services/api-requests.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-all-courses',
+  templateUrl: './all-courses.component.html',
+  styleUrls: ['./all-courses.component.css']
 })
-export class HomeComponent {
+export class AllCoursesComponent {
   isAuth:boolean = false;
   courses:any;
 
@@ -26,7 +25,7 @@ export class HomeComponent {
       });
     }
 
-    this._apiservice.getData('api/courseSegment').subscribe(res => {
+    this._apiservice.getData('api/courses').subscribe(res => {
       const courseRes = <CourseRes>res;
       this.courses = courseRes.courses;
     })

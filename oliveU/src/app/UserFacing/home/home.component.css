@@ -10,3 +10,13 @@ a{
   color:#444;
 }
 
+.headContainer{
+  display:flex;
+  align-items: center;
+}
+
+.seeAllCourses{
+
+  margin-left: auto;
+  
+}

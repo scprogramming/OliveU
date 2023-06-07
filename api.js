@@ -37,6 +37,18 @@ app.get('/api/courses', async(req,res) => {
     
 });
 
+app.get('/api/courseSegment', async(req,res) => {
+    try{
+        const courses = await pool.query("SELECT * FROM courses LIMIT 4;");
+
+        res.json({courses:courses.rows})
+    }catch (err){
+        res.json({status:-1, message:"Failed to retrieve courses"});
+    }
+    
+});
+
+
 app.post('/api/userCourses', async(req,res) => {
     try{
         const {token} = req.body;

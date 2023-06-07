@@ -9,6 +9,31 @@
 
 
 <div class="container"> 
+
+    <div class="headContainer">
+        <h2 style="display:inline">Our Courses</h2>
+        <a class="seeAllCourses" href="/courses">See all courses</a>
+    </div>
+    <div class="row">
+        <div *ngFor="let course of courses" class="col-lg-4" style="padding-top:1em;">
+            <a href="courses{{course.path}}">
+            <div class="card w-100 h-100">
+                <img class="card-img-top img-fluid" src={{course.thumbnail}} alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">{{course.title}}</h4>
+                    <p class="card-text">{{course.shortdesc}}</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        
+    </div>
+
+
+    <div class="headContainer">
+        <h2 style="display:inline">Text Articles and Tutorials</h2>
+        <a class="seeAllCourses" href="/courses">See all articles and tutorials</a>
+    </div>
     <div class="row">
         <div *ngFor="let course of courses" class="col-lg-4" style="padding-top:1em;">
             <a href="courses{{course.path}}">

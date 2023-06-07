@@ -39,7 +39,7 @@ app.get('/api/courses', async(req,res) => {
 
 app.get('/api/courseSegment', async(req,res) => {
     try{
-        const courses = await pool.query("SELECT * FROM courses LIMIT 4;");
+        const courses = await pool.query("SELECT * FROM courses LIMIT 3;");
 
         res.json({courses:courses.rows})
     }catch (err){
@@ -71,7 +71,7 @@ app.get('/api/articleContent/:id', async(req,res) => {
 
 app.get('/api/articlesSegment', async(req,res) => {
     try{
-        const articles = await pool.query("SELECT * FROM articles LIMIT 4");
+        const articles = await pool.query("SELECT * FROM articles LIMIT 3");
         res.json({articles:articles.rows});
     }catch (err){
         console.error(err);
@@ -84,7 +84,7 @@ app.post('/api/userCourses', async(req,res) => {
         const {token} = req.body;
         const jwtRes = jwt.verify(token,process.env.jwtSecret);
 
-        const courses = await pool.query("SELECT courses.* FROM enrollments INNER JOIN courses ON enrollments.course_id = courses.id");
+        const courses = await pool.query("SELECT courses.* FROM enrollments INNER JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $1", [jwtRes.user_id]);
         res.json({courses:courses.rows});
     }catch(err){
         console.error(err);
@@ -225,27 +225,27 @@ app.post('/api/register', async(req,res) => {
         }else{
             if (password !== confirmPassword){
                 res.json({status:-1, message:"Passwords provided do not match!"});
-            }
-
-            const checkEmail = await pool.query("SELECT email FROM users WHERE email=$1", [email])
-
-            if (checkEmail.rowCount === 0){
-                const salt = await bcrypt.genSalt(10);
-                const hash = await bcrypt.hash(password,salt);
-
-                const maxId = await pool.query("SELECT MAX(user_id) AS max_id FROM users;");
-                let user_id = 1;
-
-                if (maxId.rows[0].max_id !== null){
-                    user_id = maxId.rows[0].max_id + 1;
-                }
-
-                await pool.query("INSERT INTO users(user_id, email,password, active, role) VALUES ($1,$2,$3,$4,$5)", [user_id, email,hash,1,"user"]);
-                await pool.query("INSERT INTO user_details(user_id) VALUES($1)",[user_id]);
-                
-                res.json({status:1,message:"Successfully registered!"});
             }else{
-                res.json({status:-1,message:"Email already exists, please pick another email!"});
+                const checkEmail = await pool.query("SELECT email FROM users WHERE email=$1", [email])
+
+                if (checkEmail.rowCount === 0){
+                    const salt = await bcrypt.genSalt(10);
+                    const hash = await bcrypt.hash(password,salt);
+
+                    const maxId = await pool.query("SELECT MAX(user_id) AS max_id FROM users;");
+                    let user_id = 1;
+
+                    if (maxId.rows[0].max_id !== null){
+                        user_id = maxId.rows[0].max_id + 1;
+                    }
+
+                    await pool.query("INSERT INTO users(user_id, email,password, active, role) VALUES ($1,$2,$3,$4,$5)", [user_id, email,hash,1,"user"]);
+                    await pool.query("INSERT INTO user_details(user_id) VALUES($1)",[user_id]);
+                    
+                    res.json({status:1,message:"Successfully registered!"});
+                }else{
+                    res.json({status:-1,message:"Email already exists, please pick another email!"});
+                }
             }
         }
     }catch (err){

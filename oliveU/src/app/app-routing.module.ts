@@ -11,7 +11,10 @@ import { AuthGuard } from './Guards/auth.guard';
 import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.component';
 import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
 import { AllPostsComponent } from './UserFacing/all-posts/all-posts.component';
-import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
+import { IntroductionToProgramming1Component } from './Static/CS101/introduction-to-programming1/introduction-to-programming1.component';
+import { HowComputersStoreData1Component } from './Static/CS101/how-computers-store-data1/how-computers-store-data1.component';
+import { GettingStartedWithPython3Component } from './Static/CS101/getting-started-with-python3/getting-started-with-python3.component';
+import { OutputsStringsComments4Component } from './Static/CS101/outputs-strings-comments4/outputs-strings-comments4.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home', pathMatch:'full'},
@@ -24,7 +27,10 @@ const routes: Routes = [
   {path:"profile", component:ProfileComponent, canActivate:[AuthGuard]},
   {path:"userCourses", component:UserCoursesComponent, canActivate:[AuthGuard]},
   {path:"posts", component:AllPostsComponent},
-  {path:"viewPost/:id", component:ViewPostComponent}
+  {path:"tutorials/CS101/introduction-to-programming", component:IntroductionToProgramming1Component},
+  {path:"tutorials/CS101/how-computers-store-data", component:HowComputersStoreData1Component},
+  {path:"tutorials/CS101/getting-started-with-python", component:GettingStartedWithPython3Component},
+  {path:"tutorials/CS101/outputs-strings-comments", component:OutputsStringsComments4Component}
 ];
 
 @NgModule({

@@ -36,7 +36,7 @@
     </div>
     <div class="row">
         <div *ngFor="let article of articles" class="col-lg-4" style="padding-top:1em;">
-            <a href="viewPost{{article.path}}">
+            <a href="{{article.path}}">
             <div class="card w-100 h-100">
                 <img class="card-img-top img-fluid" src={{article.thumbnail}} alt="Card image cap">
                 <div class="card-block">

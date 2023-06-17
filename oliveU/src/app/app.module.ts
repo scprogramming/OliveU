@@ -19,6 +19,15 @@ import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.com
 import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
 import { AllPostsComponent } from './UserFacing/all-posts/all-posts.component';
 import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
+import { IntroductionToProgramming1Component } from './Static/CS101/introduction-to-programming1/introduction-to-programming1.component';
+import { HowComputersStoreData1Component } from './Static/CS101/how-computers-store-data1/how-computers-store-data1.component';
+import { GettingStartedWithPython3Component } from './Static/CS101/getting-started-with-python3/getting-started-with-python3.component';
+import { PrismComponent } from './prism.component';
+
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-scss';
+import { OutputsStringsComments4Component } from './Static/CS101/outputs-strings-comments4/outputs-strings-comments4.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +44,12 @@ import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
     UserCoursesComponent,
     AllCoursesComponent,
     AllPostsComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    IntroductionToProgramming1Component,
+    HowComputersStoreData1Component,
+    GettingStartedWithPython3Component,
+    PrismComponent,
+    OutputsStringsComments4Component
   ],
   imports: [
     BrowserModule,
@@ -45,7 +59,7 @@ import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

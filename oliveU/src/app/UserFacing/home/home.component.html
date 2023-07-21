@@ -7,9 +7,20 @@
     <app-unauthnav></app-unauthnav>
 </ng-template>
 
+<div class="jumboContainer">
+    <div class="container-fluid py-5 jumbo">
+        <h1 class="display-5 fw-bold mb-5">Learn Computer Science <br>the right way</h1>
+        <h3>Check out our courses and tutorials</h3>
+
+        <button class="btn button-prim">View Courses</button>
+        <button class="btn button-prim">View tutorials</button>
+    </div>
+</div>
 
 <div class="container"> 
 
+    
+    
     <div class="headContainer">
         <h2 style="display:inline">Our Courses</h2>
         <a class="seeAllCourses" href="/courses">See all courses</a>
@@ -29,7 +40,6 @@
         
     </div>
 
-
     <div class="headContainer mt-5">
         <h2 style="display:inline">Text Posts and Tutorials</h2>
         <a class="seeAllCourses" href="/posts">See all posts and tutorials</a>
@@ -41,7 +51,7 @@
                 <img class="card-img-top img-fluid" src={{article.thumbnail}} alt="Card image cap">
                 <div class="card-block">
                     <h4 class="card-title">{{article.title}}</h4>
-                    <p class="card-text">{{article.shortdesc}}</p>
+                    <p class="card-text">{{article.description}}</p>
                 </div>
             </div>
             </a>

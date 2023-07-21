@@ -4,21 +4,21 @@ import { StatusOnlyRes } from 'src/app/Response';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
-  selector: 'app-outputs-strings-comments4',
-  templateUrl: './outputs-strings-comments4.component.html',
-  styleUrls: ['./outputs-strings-comments4.component.css']
+  selector: 'app-user-inputs6',
+  templateUrl: './user-inputs6.component.html',
+  styleUrls: ['./user-inputs6.component.css']
 })
-export class OutputsStringsComments4Component {
+export class UserInputs6Component {
   isAuth:boolean;
   articleContent:any;
 
   constructor(private meta: Meta, private title:Title, private _authService:AuthService){
     this.meta.addTags([
-      {name:'description', content:'In this article, you will learn the structure of print statements and strings in Python. This article also discusses the basics of comments.'},
+      {name:'description', content:'In this article, you will learn how to take a user input using Python. You will also learn about the concept of type conversions.'},
       {name: 'author', content:'Scott Cosentino'},
       {name: 'keywords', content:'Python, Programming, Introduction to Programming'}
     ]);
-    this.title.setTitle('Outputs, Strings, and Comments')
+    this.title.setTitle('Python User Inputs')
   }
   ngOnInit(){
 

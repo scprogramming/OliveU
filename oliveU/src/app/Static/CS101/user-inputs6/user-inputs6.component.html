@@ -1,0 +1,32 @@
+<ng-template [ngIf]="isAuth" [ngIfElse]="loggedOut">
+    <app-navbar></app-navbar>
+</ng-template>
+
+<ng-template #loggedOut>
+    <app-unauthnav></app-unauthnav>
+</ng-template>
+
+<div class="divpadding">
+    <h1>User Inputs in Python</h1>
+    <h6>CS101 - Introduction to Programming with Python</h6>
+    <h6 class="articleh6"><strong>Author:</strong> Scott Cosentino</h6>
+    <div>
+       <p>Most programs you write will take some form of input, perform an operation, then provide an output. We've learned the process of outputting data using the print function. This tutorial will explore the process of taking user input using the input function. </p>
+
+       <h2>The Basics of the Input Function</h2>
+
+       <p>You will generally use the input function in the form of an assignment statement, as shown in the following code:</p>
+
+       <pre><code class="language-python">userInput = input("Enter some input")</code></pre>
+
+       <p>Let's break down this code to understand better exactly how it works. The input function takes in one argument. This argument is the prompt that will be displayed to the user when the application prompts them for input. In this example, the prompt is <em>Enter some input</em>. When the user provides input, Python will read the input and store it in the variable named <em>userInput</em>. To see this code in action, let's add a print to see what Python stores in the <em>userInput</em> variable. </p>
+
+       <pre><code class="language-python">userInput = input("Enter some input")
+print(userInput)</code></pre>
+
+        <p>Run this code on your computer. You will first receive a prompt that asks you to <em>Enter some input</em>. Type anything in, then press enter. You will see the value you typed in displayed on the screen, as shown in the following figure. </p>
+
+    </div>
+</div>
+
+<app-footer></app-footer>

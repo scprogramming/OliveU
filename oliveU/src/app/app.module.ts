@@ -28,6 +28,8 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-scss';
 import { OutputsStringsComments4Component } from './Static/CS101/outputs-strings-comments4/outputs-strings-comments4.component';
+import { Variables5Component } from './Static/CS101/variables5/variables5.component';
+import { UserInputs6Component } from './Static/CS101/user-inputs6/user-inputs6.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { OutputsStringsComments4Component } from './Static/CS101/outputs-strings
     HowComputersStoreData1Component,
     GettingStartedWithPython3Component,
     PrismComponent,
-    OutputsStringsComments4Component
+    OutputsStringsComments4Component,
+    Variables5Component,
+    UserInputs6Component
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleDetails, StatusOnlyRes } from 'src/app/Response';
 import { ApiRequestsService } from 'src/app/Services/api-requests.service';
@@ -15,19 +14,15 @@ export class ViewPostComponent {
   isAuth:boolean;
   articleContent:any;
 
-  constructor(private _authService:AuthService, private _apiservice:ApiRequestsService, 
-    private route: ActivatedRoute, private router:Router, private metaService: Meta,
-    private titleService:Title){}
+  constructor(private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router){}
 
   ngOnInit(){
 
     this.route.params.subscribe(params => {
-      this._apiservice.getData('api/articleContent/' + params['courseCode'] + "/" + params['id']).subscribe(res => {
+      this._apiservice.getData('api/articleContent/' + params['id']).subscribe(res => {
         this.id = params['id'];
         let articleContent = <ArticleDetails>res;
 
-        this.metaService.updateTag({name:'description', content:articleContent.description});
-        this.titleService.setTitle(articleContent.title);
         this.articleContent = articleContent;
       })
     })

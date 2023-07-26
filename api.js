@@ -58,9 +58,9 @@ app.get('/api/articles', async(req,res) => {
     }
 });
 
-app.get('/api/articleContent/:courseCode/:id', async(req,res) => {
+app.get('/api/articleContent/:id', async(req,res) => {
     try{
-        const articleDetails = await pool.query("SELECT title, content, description, thumbnail FROM articles WHERE path = $1", ['/posts/' + req.params.courseCode + "/" + req.params.id]);
+        const articleDetails = await pool.query("SELECT title, content, description, thumbnail FROM articles WHERE path = $1", ['/' + req.params.id]);
         res.json({title:articleDetails.rows[0].title, content: articleDetails.rows[0].content, 
         description: articleDetails.rows[0].description, thumbnail: articleDetails.rows[0].thumbnail});
     }catch(err){

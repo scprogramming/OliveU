@@ -1,0 +1,34 @@
+<ng-template [ngIf]="isAuth" [ngIfElse]="loggedOut">
+    <app-navbar></app-navbar>
+</ng-template>
+
+<ng-template #loggedOut>
+    <app-unauthnav></app-unauthnav>
+</ng-template>
+
+<div class="divpadding">
+    <h1>How Computers Store Data</h1>
+    <h6>CS101 - Introduction to Programming with Python</h6>
+    <h6 class="articleh6"><strong>Author:</strong> Scott Cosentino</h6>
+    <div>
+       <p>At the lowest level, each computer component is a group of electrical circuits working together to achieve a task. Data that moves through these systems must be represented using these electrical components. These electrical components have two main states: on and off. This means all our data needs to be represented using combinations of on and off signals. This gives us two states to work with, which may seem limiting, but this is all we need to represent data. </p>
+
+       <p>Let’s represent the on and off states using numbers. We will assign the number 1 to on and 0 to off. We call this numbering system the binary numbering system. Each 1 or 0 is referred to as a bit. We can combine bits to represent any number. We do this by assigning a value to each bit position. The rightmost bit is given the value of 2<sup>0</sup>, the digit to the left of this is given the value 2<sup>1</sup>, and this pattern continues until the end of the number. As an example, consider the binary number 1010. To determine the value of this number, we determine which powers of 2 are associated with each digit.</p>
+
+       <img class="centerImage" src="assets/images/CS101/articles/HowComputersStoreData_BinaryTable.JPG">
+
+       <p>Next, we add together all the powers that have a 1. So, in this example, 2<sup>3</sup> and 2<sup>1</sup> have a 1, so we add them together to get 10. Therefore, the binary number 1010 is equal to the decimal number 10. </p>
+
+       <p>We have a few defined sizes we commonly use for representing data. A byte is a combination of 8 bits. The largest possible number that can be represented as a byte is 11111111. This is equivalent to the decimal number 255. When you work with a programming language, for example, Python, you will find that the data you store has a maximum possible size. The reason for this size restriction is due to the number of bits used to represent the data.</p>
+
+       <p>Since computers work with data in binary format, we need a way to represent data like text characters and punctuation using numbers. This is done using the American Standard Code for Information Interchange, or ASCII. ASCII is a set of 128 numeric codes representing English letters and punctuation. For example, the number 65 maps to the letter A (specifically, the capital letter A, the lowercase a gets a different value). Using this mapping, we can store each character as a binary number by converting the decimal number into binary. For example, the letter A is 65, which is 01000001 in binary. To represent characters beyond the English language, it is possible to use an extension of ASCII, such as Unicode. ASCII and Unicode tables can easily be found online, so memorizing any of the mappings is unnecessary.</p>
+
+       <p>This gives us a convenient way to represent decimal numbers and characters on a computer. It is also possible to represent negative and decimal numbers using binary. These concepts are a fair bit more complex, so we won’t cover them in this article. Most of the details of data storage are abstracted away from you when you work at a higher-level language. Even if that is the case, understanding the basics of low level storage can help you make better programming decisions and better understand how your code actually works. </p>
+
+       <h2>Wrapping up</h2>
+       <p>You now have a basic understanding of data storage on computers! You can continue learning the basics of programming by reading <a href="tutorials/CS101/getting-started-with-python">Getting Started with Python.</a> </p>
+    
+    </div>
+</div>
+
+<app-footer></app-footer>

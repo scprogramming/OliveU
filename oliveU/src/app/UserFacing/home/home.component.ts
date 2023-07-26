@@ -30,7 +30,6 @@ export class HomeComponent {
     this._apiservice.getData('api/courseSegment').subscribe(res => {
       const courseRes = <CourseRes>res;
       this.courses = courseRes.courses;
-      console.log(this.courses);
     });
 
     this._apiservice.getData('api/articles').subscribe(res => {

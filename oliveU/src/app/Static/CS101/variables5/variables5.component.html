@@ -1,0 +1,67 @@
+<ng-template [ngIf]="isAuth" [ngIfElse]="loggedOut">
+    <app-navbar></app-navbar>
+</ng-template>
+
+<ng-template #loggedOut>
+    <app-unauthnav></app-unauthnav>
+</ng-template>
+
+<div class="divpadding">
+    <h1>Variables in Python</h1>
+    <h6>CS101 - Introduction to Programming with Python</h6>
+    <h6 class="articleh6"><strong>Author:</strong> Scott Cosentino</h6>
+    <div>
+       <p>In programming, programs use variables to store data in memory. You can access data in a variable and change the data as the program runs. Programmers usually use variables to keep track of inputs and outputs. For example, consider a program that takes the total of a sale as an input and calculates the sales tax as the output. In this example, the total of the sale needs to be stored in a variable so it can be used in the sales tax calculation. Let's take a look at how we can declare variables in Python.</p>
+
+       <h2>Declaring variables in Python</h2>
+
+       <p>In Python, we create a variable using an assignment statement. The following code shows an example of a few assignment statements.</p>
+
+        <pre><code class="language-python">num = 15
+my_text = "Hello!"
+decimalData = 3.14</code></pre>
+
+        <p>From this example, you can see the general format of the assignment statement. TThe left side of the equals sign is the variable's name, and the right-hand side is the variable's value. The equals sign is called in <em>assignment operator</em> in this statement. In this example, we defined a variable named <em>num</em> with a value of <em>15</em>, a variable named <em>my_text</em> with a value of <em>Hello!</em>, and a variable <em>decimalData</em> with a value of <em>3.14</em>.</p>
+
+        <p>Regarding the naming of variables, there are a few rules that you should be aware of:</p>
+
+        <ul>
+            <li>You cannot use Python keywords as variable names (for example, print is not a valid variable name)</li>
+            <li>A variable name cannot have spaces in it</li>
+            <li>The first character of the name must be either a letter or underscore character</li>
+            <li>After the first character, you can use letters, numbers, or underscores</li>
+            <li>Variable names are case sensitive</li>
+        </ul>
+
+        <p>It is possible to use these variables in your application code. For example, you can print a variable's value by placing the variable in a <em>print</em> function.</p>
+
+        <pre><code class="language-python">num = 15
+print(num)</code></pre>
+
+        <p>When this code runs, Python will attempt to determine the value of the <em>num</em> variable. To do this, Python goes to the memory location associated with the variable. In this memory location, Python will find the value 15. Python will then print the value 15 on the screen. </p>
+
+        <h2>Variable Reassignment</h2>
+        
+        <p>So far, you've learned how to create a variable through assignment and use a variable in a function like <em>print</em>. In this section, we will see how variable values can change. To start, it is possible to assign a new value to a variable after it is created. The code below demonstrates this process. </p>
+
+        <pre><code class="language-python">num = 15
+num = 20
+print(num)</code></pre>
+    
+        <p>In this example, the variable <em>num</em> is initially set to the value 15. The next line updates the value to 20. When the <em>print</em> funciton runs, the last value the variable had, 20, is print to the screen. </p>
+
+        <p>Changing a variables value is often done using some form of operation. For example, we can add a number to a variable to change its value.</p>
+
+        <pre><code class="language-python">num = 15
+num = num + 1
+print(num)</code></pre>
+
+        <p>In this example, <em>num</em> originally has a value of 15. The next line takes the value of <em>num</em>, adds 1 to it, then stores the result back in the <em>num</em> variable. When the print occurs, the value of num is now 16.</p>
+
+        <h2>Wrapping Up</h2>
+
+        <p>This tutorial has shown you the basic ideas of variables in Python. Variables are a powerful tool used to manage data in an application. You will continue to work with and apply variables as you learn programming. One specific area where inputs are applied frequently is with user inputs. You can continue to learn the basics of programming by reading <a href="tutorials/CS101/user-inputs">handling user inputs.</a></p>
+    </div>
+</div>
+
+<app-footer></app-footer>

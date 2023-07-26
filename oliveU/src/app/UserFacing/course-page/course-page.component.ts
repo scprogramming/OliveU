@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { CourseDetails, EnrollRes, Lessons, StatusOnlyRes } from 'src/app/Response';
@@ -18,8 +17,7 @@ export class CoursePageComponent {
   lessons:any;
   isEnrolled:boolean = false;
 
-  constructor(private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router,
-    private titleService:Title){}
+  constructor(private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router){}
 
   enrollStudent(){
 
@@ -47,7 +45,6 @@ export class CoursePageComponent {
 
   ngOnInit(){
 
-    
     this.route.params.subscribe(params => {
       this._apiservice.getData('api/courseContent/' + params['id']).subscribe(res => {
         this.id = params['id'];
@@ -79,7 +76,7 @@ export class CoursePageComponent {
 
         this.courseContent = courseContent;
         this.lessons = <Lessons>organizedLesson;
-        this.titleService.setTitle(courseContent.details.title);
+
         console.log(this.lessons)
       })
     })

@@ -19,9 +19,17 @@ import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.com
 import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
 import { AllPostsComponent } from './UserFacing/all-posts/all-posts.component';
 import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
+import { IntroductionToProgramming1Component } from './Static/CS101/introduction-to-programming1/introduction-to-programming1.component';
+import { HowComputersStoreData1Component } from './Static/CS101/how-computers-store-data1/how-computers-store-data1.component';
+import { GettingStartedWithPython3Component } from './Static/CS101/getting-started-with-python3/getting-started-with-python3.component';
+import { PrismComponent } from './prism.component';
 
-import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
-
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-scss';
+import { OutputsStringsComments4Component } from './Static/CS101/outputs-strings-comments4/outputs-strings-comments4.component';
+import { Variables5Component } from './Static/CS101/variables5/variables5.component';
+import { UserInputs6Component } from './Static/CS101/user-inputs6/user-inputs6.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +46,14 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
     UserCoursesComponent,
     AllCoursesComponent,
     AllPostsComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    IntroductionToProgramming1Component,
+    HowComputersStoreData1Component,
+    GettingStartedWithPython3Component,
+    PrismComponent,
+    OutputsStringsComments4Component,
+    Variables5Component,
+    UserInputs6Component
   ],
   imports: [
     BrowserModule,
@@ -46,8 +61,7 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgxGoogleAnalyticsModule.forRoot('G-JPR7JFWPW6')
+    ReactiveFormsModule
   ],
   providers: [ ],
   bootstrap: [AppComponent]

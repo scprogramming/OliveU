@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ArticleRes, CourseRes, StatusOnlyRes } from 'src/app/Response';
 import { ApiRequestsService } from 'src/app/Services/api-requests.service';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -13,10 +12,10 @@ export class AllPostsComponent {
   isAuth:boolean = false;
   articles:any;
 
-  constructor(private _apiservice:ApiRequestsService, private _authService:AuthService, private titleService:Title){}
+  constructor(private _apiservice:ApiRequestsService, private _authService:AuthService){}
 
   ngOnInit(){
-    this.titleService.setTitle("Tutorials");
+
     if (localStorage.getItem("id_token") !== null){
       const token = localStorage.getItem('id_token')!;
 

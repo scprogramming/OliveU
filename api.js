@@ -39,8 +39,6 @@ app.get('/api/courses', async(req,res) => {
         const courses = await pool.query("SELECT * FROM courses;");
         consoler.log("[" + Date.now().toString() + "]" + "Retrieved all courses from endpoint:/api/courses");
         res.json({courses:courses.rows})
-
-        console.log("Test");
     }catch (err){
         res.json({status:-1, message:"Failed to retrieve courses"});
         consoler.error("[" + Date.now().toString() + "]" + "Failed to retrieve data from endpoint:/api/courses");

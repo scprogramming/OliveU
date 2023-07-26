@@ -81,7 +81,6 @@ export class CoursePlayerComponent {
         this.linearLessonList = <Lessons>linearLessons;
 
         this.titleService.setTitle(this.activeTitle);
-        console.log(this.linearLessonList)
       })
     })
 

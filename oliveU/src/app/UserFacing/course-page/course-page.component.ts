@@ -29,8 +29,6 @@ export class CoursePageComponent {
         const enrollRes = <Response>res;
         if (enrollRes.status === 1){
           this.router.navigateByUrl('coursePlayer/' + this.id);
-        }else{
-          console.log("Failed to register!");
         }
         
       });
@@ -58,8 +56,7 @@ export class CoursePageComponent {
             const enrollStatus = <EnrollRes>res;
 
             if (enrollStatus.status == 1){
-                this.isEnrolled = enrollStatus.value;
-                console.log(this.isEnrolled);            
+                this.isEnrolled = enrollStatus.value;           
             }
           })
         }
@@ -80,7 +77,6 @@ export class CoursePageComponent {
         this.courseContent = courseContent;
         this.lessons = <Lessons>organizedLesson;
         this.titleService.setTitle(courseContent.details.title);
-        console.log(this.lessons)
       })
     })
 

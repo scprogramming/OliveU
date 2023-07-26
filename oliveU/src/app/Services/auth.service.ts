@@ -17,7 +17,6 @@ export class AuthService {
   }
 
   isAuthenticated(token:string){
-    console.log("Here");
     return this._apiService.postData('api/verifyToken', {token:token})
   }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleDetails, StatusOnlyRes } from 'src/app/Response';
 import { ApiRequestsService } from 'src/app/Services/api-requests.service';
@@ -16,7 +16,8 @@ export class ViewPostComponent {
   articleContent:any;
 
   constructor(private _authService:AuthService, private _apiservice:ApiRequestsService, 
-    private route: ActivatedRoute, private router:Router, private metaService: Meta){}
+    private route: ActivatedRoute, private router:Router, private metaService: Meta,
+    private titleService:Title){}
 
   ngOnInit(){
 
@@ -26,6 +27,7 @@ export class ViewPostComponent {
         let articleContent = <ArticleDetails>res;
 
         this.metaService.updateTag({name:'description', content:articleContent.description});
+        this.titleService.setTitle(articleContent.title);
         this.articleContent = articleContent;
       })
     })

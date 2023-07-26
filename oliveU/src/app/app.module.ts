@@ -19,11 +19,8 @@ import { UserCoursesComponent } from './UserFacing/user-courses/user-courses.com
 import { AllCoursesComponent } from './UserFacing/all-courses/all-courses.component';
 import { AllPostsComponent } from './UserFacing/all-posts/all-posts.component';
 import { ViewPostComponent } from './UserFacing/view-post/view-post.component';
-import { PrismComponent } from './prism.component';
 
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-scss';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 
 @NgModule({
@@ -41,8 +38,7 @@ import 'prismjs/components/prism-scss';
     UserCoursesComponent,
     AllCoursesComponent,
     AllPostsComponent,
-    ViewPostComponent,
-    PrismComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +46,8 @@ import 'prismjs/components/prism-scss';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxGoogleAnalyticsModule.forRoot('G-JPR7JFWPW6')
   ],
   providers: [ ],
   bootstrap: [AppComponent]

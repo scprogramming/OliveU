@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, HostListener } from '@angular/core';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fromEvent } from 'rxjs';
 import { CourseDetails, Lessons, StatusOnlyRes } from 'src/app/Response';
 import { ApiRequestsService } from 'src/app/Services/api-requests.service';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -12,7 +13,8 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class CoursePlayerComponent {
 
-  constructor(public sanitizer:DomSanitizer, private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router){}
+  constructor(public sanitizer:DomSanitizer, private _authService:AuthService, private _apiservice:ApiRequestsService, private route: ActivatedRoute, private router:Router,
+    private titleService:Title){}
   lessons:any;
   courseContent:any;
   activeContent:any;
@@ -35,6 +37,7 @@ export class CoursePlayerComponent {
     this.activeSelectMod = this.linearLessonList[lesson_id].module_id;
     this.activeTitle = this.linearLessonList[lesson_id].title;
   }
+
 
   nextLesson(){
       this.activeSelectLesson += 1;
@@ -77,6 +80,7 @@ export class CoursePlayerComponent {
         this.activeContent = this.sanitizer.bypassSecurityTrustResourceUrl(this.lessons[1][0].lessons.content);
         this.linearLessonList = <Lessons>linearLessons;
 
+        this.titleService.setTitle(this.activeTitle);
         console.log(this.linearLessonList)
       })
     })

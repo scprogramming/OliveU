@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:"profile", component:ProfileComponent, canActivate:[AuthGuard]},
   {path:"userCourses", component:UserCoursesComponent, canActivate:[AuthGuard]},
   {path:"posts/:courseCode/:id", component:ViewPostComponent},
-  {path:"posts", component:AllPostsComponent}
+  {path:"posts", component:AllPostsComponent},
 ];
 
 @NgModule({

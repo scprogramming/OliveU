@@ -35,3 +35,7 @@ a{
   display:flex;
   align-items: center;
 }
+
+.jumbo{
+  padding-left: 4%;
+}

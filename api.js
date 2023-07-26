@@ -22,12 +22,7 @@ const pool = new Pool({
 const app = express();
 app.use(express.json());
 
-app.use(cors({
-    origin: [process.env.frontEndHost + ':' + process.env.frontEndPort, 
-    process.env.frontEndHost + ':' + 5000, 
-    process.env.frontEndHost,
-    process.env.frontEndHost + ':' + process.env.devPort]
-}));
+app.use(cors());
 
 app.get('/api/courses', async(req,res) => {
     try{

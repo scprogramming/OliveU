@@ -4,11 +4,20 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const Pool = require("pg").Pool;
-const fs = require('fs')
+const fs = require('fs');
+const https = require('https');
 
 const errorLog = fs.createWriteStream('./errors.log');
 const outputLog = fs.createWriteStream('./outputs.log');
 const consoler = new console.Console(outputLog, errorLog)
+
+const privateKey = fs.readFileSync(process.env.privateKey,'utf-8');
+const certificate = fs.readFileSync(process.env.certificate, 'utf-8');
+
+const options = {
+    key:privateKey,
+    cert:certificate
+}
 
 
 const pool = new Pool({
@@ -378,6 +387,8 @@ app.post('/api/verifyToken', async(req,res) => {
 
 });
 
-app.listen("5000", () => {
+const server = https.createServer(options, app);
+
+server.listen("5000", () => {
     console.log("API Started");
 })

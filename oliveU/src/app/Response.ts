@@ -31,7 +31,8 @@ export interface ArticleDetails{
     title:any,
     content:any,
     description:any,
-    thumbnail:any
+    thumbnail:any,
+    short_desc:any
 }
 
 export interface EnrollRes{

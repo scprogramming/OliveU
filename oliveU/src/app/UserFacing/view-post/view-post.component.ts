@@ -24,9 +24,10 @@ export class ViewPostComponent {
     this.route.params.subscribe(params => {
       this._apiservice.getData('api/articleContent/' + params['courseCode'] + "/" + params['id']).subscribe(res => {
         this.id = params['id'];
+        
         let articleContent = <ArticleDetails>res;
 
-        this.metaService.updateTag({name:'description', content:articleContent.description});
+        this.metaService.updateTag({name:'description', content:articleContent.short_desc});
         this.titleService.setTitle(articleContent.title);
         this.articleContent = articleContent;
       })

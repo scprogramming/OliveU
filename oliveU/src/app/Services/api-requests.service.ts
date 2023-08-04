@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiRequestsService {
-  apiUrl = "https://149.248.53.207:5000/";
+  apiUrl = "https://olivestem.net:5000/";
 
   constructor(private _http:HttpClient) { }
 

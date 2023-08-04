@@ -80,9 +80,10 @@ app.get('/api/articleContent/:courseCode/:id', async(req,res) => {
         consoler.log("[" + Date.now().toString() + "]" + "Attempting to retrieve article content: " + req.params.courseCode + "/" + req.params.id);
         const articleDetails = await pool.query("SELECT title, content, description, thumbnail FROM articles WHERE path = $1", ['/posts/' + req.params.courseCode + "/" + req.params.id]);
         consoler.log("[" + Date.now().toString() + "]" + "Retrieved article content from endpoint:/api/articleContent/:courseCode/:id");
-        
+
         res.json({title:articleDetails.rows[0].title, content: articleDetails.rows[0].content, 
-        description: articleDetails.rows[0].description, thumbnail: articleDetails.rows[0].thumbnail});
+        description: articleDetails.rows[0].description, thumbnail: articleDetails.rows[0].thumbnail,
+        short_desc: articleDetails.rows[0].short_desc});
     }catch(err){
         consoler.error("[" + Date.now().toString() + "]" + "Failed to retrieve data from endpoint:/api/articleContent/:courseCode/:id");
         consoler.error("[" + Date.now().toString() + "]" + "Error: " + err);

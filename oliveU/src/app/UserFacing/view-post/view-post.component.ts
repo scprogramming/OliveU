@@ -27,6 +27,7 @@ export class ViewPostComponent {
         
         let articleContent = <ArticleDetails>res;
 
+        console.log(articleContent);
         this.metaService.updateTag({name:'description', content:articleContent.short_desc});
         this.titleService.setTitle(articleContent.title);
         this.articleContent = articleContent;

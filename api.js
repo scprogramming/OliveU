@@ -78,7 +78,7 @@ app.get('/api/articles', async(req,res) => {
 app.get('/api/articleContent/:courseCode/:id', async(req,res) => {
     try{
         consoler.log("[" + Date.now().toString() + "]" + "Attempting to retrieve article content: " + req.params.courseCode + "/" + req.params.id);
-        const articleDetails = await pool.query("SELECT title, content, description, thumbnail FROM articles WHERE path = $1", ['/posts/' + req.params.courseCode + "/" + req.params.id]);
+        const articleDetails = await pool.query("SELECT title, content, description, thumbnail, short_desc FROM articles WHERE path = $1", ['/posts/' + req.params.courseCode + "/" + req.params.id]);
         consoler.log("[" + Date.now().toString() + "]" + "Retrieved article content from endpoint:/api/articleContent/:courseCode/:id");
 
         res.json({title:articleDetails.rows[0].title, content: articleDetails.rows[0].content, 
